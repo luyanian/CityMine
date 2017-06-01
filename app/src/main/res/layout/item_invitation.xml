@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_app_bg_gray"
+              android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dpi_5"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_5"
+            android:text="供货标题:"
+            android:textColor="@color/color_black"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/item_invitation_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xxxxxxx"
+            android:textColor="@color/color_black"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:padding="@dimen/dpi_10"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/item_invitation_iv"
+            android:layout_width="@dimen/dpi_80"
+            android:layout_height="@dimen/dpi_80"
+            fresco:roundedCornerRadius="8dp"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:backgroundImage="@drawable/home_news_test"
+            />
+
+        <TextView
+            android:id="@+id/item_invitation_pingzhong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_10"
+            android:layout_marginTop="@dimen/dpi_15"
+            android:layout_toRightOf="@id/item_invitation_iv"
+            android:text="品种:"
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/item_invitation_pingzhong_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/item_invitation_pingzhong"
+            android:layout_marginLeft="@dimen/dpi_3"
+            android:layout_toRightOf="@id/item_invitation_pingzhong"
+            android:text="品种:"
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/item_invitation_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/item_invitation_pingzhong"
+            android:layout_marginLeft="@dimen/dpi_25"
+            android:layout_toRightOf="@id/item_invitation_pingzhong_tv"
+            android:text="数量:"
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/item_invitation_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/item_invitation_pingzhong"
+            android:layout_marginLeft="@dimen/dpi_3"
+            android:layout_toRightOf="@id/item_invitation_num"
+            android:text="数量:"
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/item_invitation_gg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/item_invitation_iv"
+            android:layout_marginBottom="@dimen/dpi_15"
+            android:layout_marginLeft="@dimen/dpi_10"
+            android:layout_toRightOf="@id/item_invitation_iv"
+            android:text="规格:"
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/item_invitation_gg_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/item_invitation_iv"
+            android:layout_marginBottom="@dimen/dpi_15"
+            android:layout_marginLeft="@dimen/dpi_3"
+            android:layout_toRightOf="@id/item_invitation_gg"
+            android:text="规格:"
+            android:textColor="@color/color_black"
+            />
+
+        <Button
+            android:id="@+id/item_invitation_btn"
+            android:layout_width="@dimen/dpi_60"
+            android:layout_height="@dimen/dpi_25"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_yellow_btn"
+            android:text="邀请函"
+            android:textColor="@color/color_app_white"
+            android:textSize="12sp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/color_white"
+              android:orientation="vertical"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dpi_10"
+        >
+
+        <TextView
+            android:id="@+id/item_i_d_check"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:background="@drawable/bg_truck_1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_8"
+            android:text="采购订单编号:"
+            android:textColor="@color/color_black"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/item_i_d_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_3"
+            android:text="xxxxxx"
+            android:textColor="@color/color_black"
+            android:textSize="16sp"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:padding="@dimen/dpi_10"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/item_i_d_iv"
+            android:layout_width="@dimen/dpi_80"
+            android:layout_height="@dimen/dpi_80"
+            android:layout_marginLeft="@dimen/dpi_15"
+            fresco:backgroundImage="@drawable/home_news_test"
+            />
+
+        <TextView
+            android:id="@+id/item_i_d_pingzhong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dpi_10"
+            android:layout_toRightOf="@id/item_i_d_iv"
+            android:text="品种:"
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/item_i_d_pingzhong_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/item_i_d_pingzhong"
+            android:layout_marginLeft="@dimen/dpi_3"
+            android:layout_toRightOf="@id/item_i_d_pingzhong"
+            android:text="品种:"
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/item_i_d_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/item_i_d_pingzhong"
+            android:layout_marginLeft="@dimen/dpi_25"
+            android:layout_toRightOf="@id/item_i_d_pingzhong_tv"
+            android:text="单价:"
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/item_i_d_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/item_i_d_pingzhong"
+            android:layout_marginLeft="@dimen/dpi_3"
+            android:layout_toRightOf="@id/item_i_d_num"
+            android:text="数量:"
+            android:textColor="@color/color_black"
+            />
+
+        <LinearLayout
+            android:id="@+id/item_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/item_i_d_fukuan"
+            android:layout_below="@id/item_i_d_pingzhong"
+            android:layout_marginLeft="@dimen/dpi_10"
+            android:layout_toRightOf="@id/item_i_d_iv"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/item_i_d_gg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="规格:"
+                android:textColor="@color/color_black"
+                />
+
+            <TextView
+                android:id="@+id/item_i_d_gg_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dpi_3"
+                android:text="120升yisasdaddas"
+                android:textColor="@color/color_black"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/item_i_d_fukuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/item_i_d_iv"
+            android:layout_alignLeft="@id/item_ll"
+            android:text="付款期限:"
+            android:textColor="@color/color_black"
+            />
+
+        <TextView
+            android:id="@+id/item_i_d_fukuan_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/item_i_d_fukuan"
+            android:layout_marginLeft="@dimen/dpi_3"
+            android:layout_toRightOf="@+id/item_i_d_fukuan"
+            android:text="xxxxx"
+            android:textColor="@color/color_black"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

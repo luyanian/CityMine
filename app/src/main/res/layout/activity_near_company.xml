@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_app_white"
+    android:orientation="vertical"
+    tools:context="cn.soft_x.citymine.activity.NearCompanyActivity"
+    >
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/near_mapview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dpi_200"
+        >
+
+    </com.baidu.mapapi.map.MapView>
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/near_refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ListView
+            android:id="@+id/near_listView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+        </ListView>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+</LinearLayout>
