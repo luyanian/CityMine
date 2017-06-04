@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.geocode.GeoCodeOption;
 import com.baidu.mapapi.search.geocode.GeoCodeResult;
@@ -38,7 +39,9 @@ import org.xutils.x;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,7 +96,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
     EditText registerEdCity;
     // 调货商不需要勾选货物
     private boolean isLeft = true;
-    private static File LEFT_IMG = null, RIGHT_IMG = null;
+    private static String leftPic="",rightPic ="";
     private ArrayList<String> imgPath = new ArrayList<>();
 
     private final static int REQUEST_IMAGE_LEFT = 0x001;
@@ -239,22 +242,29 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
     }
 
     private void doRegister(double latitude, double longitude) {
-        //        {"yhtype":"1","shebei":"0","brxm":"韩雪","dhhm":"18522815693","password":"111111",
-        // "zz":"北京市雪花区","jjlxfs":"13898986969","sfzh":"8526963695685265","ggpz":"空调|冰箱","yzm":5492}
+        //{"yhtype":"1","shebei":"0","brxm":"韩雪","dhhm":"18522815693","password":"111111","zz":"北京市雪花区","jjlxfs":"13898986969",
+        // "sfzh":"8526963695685265","ggpz":"空调|冰箱","yzm":3830,"latitude":"39.101277","longitude":"117.071872","sfztp":"","qianmtp":"","roleId":"d6c9fc25a2e647e29980326d323cbd40"}
+        Map<String,Object> map = new HashMap<>();
+//        map.put("file1", LEFT_IMG);
+//        map.put("file2", RIGHT_IMG);
+        map.put("yhtype", "1");
+        map.put("shebei", "0");
+        map.put("brxm", EditTextUtils.getEdText(registerEdName));
+        map.put("dhhm", EditTextUtils.getEdText(registerEdPhone));
+        map.put("password", EditTextUtils.getEdText(registerEdPwd1));
+        map.put("zz", citys[spinnerIndex] + EditTextUtils.getEdText(registerEdCity) + EditTextUtils.getEdText(registerEdAddress));
+        map.put("jjlxfs", EditTextUtils.getEdText(registerEdEmergency));
+        map.put("sfzh", EditTextUtils.getEdText(registerEdIdCard));
+        map.put("ggpz", EditTextUtils.getEdText(registerEdIdCard));
+        map.put("sfztp", EditTextUtils.getEdText(registerEdIdCard));
+        map.put("qianmtp", EditTextUtils.getEdText(registerEdIdCard));
+        map.put("yzm", EditTextUtils.getEdText(registerEdVer));
+        map.put("latitude", String.valueOf(latitude));
+        map.put("longitude", String.valueOf(longitude));
+        String jsonParams = JSON.toJSONString(map);
+
         RequestParams params = new RequestParams(HttpUrl.REGISTER);
-        params.addBodyParameter("file1", LEFT_IMG);
-        params.addBodyParameter("file2", RIGHT_IMG);
-        params.addBodyParameter("yhtype", 0 + "");
-        params.addBodyParameter("shebei", "0");
-        params.addBodyParameter("brxm", EditTextUtils.getEdText(registerEdName));
-        params.addBodyParameter("dhhm", EditTextUtils.getEdText(registerEdPhone));
-        params.addBodyParameter("password", EditTextUtils.getEdText(registerEdPwd1));
-        params.addBodyParameter("zz", citys[spinnerIndex] + EditTextUtils.getEdText(registerEdCity) + EditTextUtils.getEdText(registerEdAddress));
-        params.addBodyParameter("jjlxfs", EditTextUtils.getEdText(registerEdEmergency));
-        params.addBodyParameter("sfzh", EditTextUtils.getEdText(registerEdIdCard));
-        params.addBodyParameter("yzm", EditTextUtils.getEdText(registerEdVer));
-        params.addBodyParameter("latitude", String.valueOf(latitude));
-        params.addBodyParameter("longitude", String.valueOf(longitude));
+
         x.http().post(params, new MyXUtilsCallBack() {
             @Override
             public void success(String result) {
@@ -309,7 +319,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
         } else if (!FormatUtils.checkIDCard(EditTextUtils.getEdText(registerEdIdCard))) {
             ToastUtil.showToast(this, "身份证号码格式不对！");
             return false;
-        }else if (null == LEFT_IMG || null == RIGHT_IMG) {
+        }else if ("".equals(leftPic)|| "".equals(rightPic)) {
             ToastUtil.showToast(this, "请上传身份证正面和反面的照片！");
             return false;
         } else if (EditTextUtils.isEmpty(registerEdVer)) {
@@ -334,19 +344,42 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
             if (resultCode == RESULT_OK) {
                 // 获取返回的图片列表
                 List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-                LEFT_IMG = new File(path.get(0));
+                File file = new File(path.get(0));
                 Bitmap bitmap = Bimp.getimage(path.get(0));
                 acAuthLeftIv.setImageBitmap(bitmap);
+                leftPic = uploadFile(file);
             }
         } else if (requestCode == REQUEST_IMAGE_RIGHT) {
             if (resultCode == RESULT_OK) {
                 List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-                RIGHT_IMG = new File(path.get(0));
+                File file = new File(path.get(0));
                 Bitmap bitmap = Bimp.getimage(path.get(0));
                 acAuthRightIv.setImageBitmap(bitmap);
+                rightPic = uploadFile(file);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private String uploadFile(File file) {
+        RequestParams params = new RequestParams(HttpUrl.UploadFile);
+        params.
+
+        x.http().post(params, new MyXUtilsCallBack() {
+            @Override
+            public void success(String result) {
+                if (resCode.equals("0")) {
+                    ToastUtil.showToast(RegisterActivity.this, "信息已经提交，请等待审核通过！");
+                }
+            }
+
+            @Override
+            public void finished() {
+                dismissProgressDialog();
+                ToastUtil.showToast(RegisterActivity.this, "上传成功！");
+            }
+        });
+        return null;
     }
 
     @Override

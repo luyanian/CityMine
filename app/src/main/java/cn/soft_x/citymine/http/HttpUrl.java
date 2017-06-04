@@ -24,7 +24,8 @@ public class HttpUrl {
     /**
      * 外网
      */
-    public static final String API_HOST = "http://115.28.237.251:80";
+//    public static final String API_HOST = "http://115.28.237.251:80";
+    public static final String API_HOST = "http://123.207.150.153:84";
     /**
      *
      */
@@ -35,6 +36,10 @@ public class HttpUrl {
      * 注册
      */
     public static final String REGISTER = API_HOST + API_PATH_1 + "register";
+    /**
+     * 上传图片
+     */
+    public static final String UploadFile = API_HOST+API_PATH_1+"tupiansc";
     /**
      * 登录
      */
