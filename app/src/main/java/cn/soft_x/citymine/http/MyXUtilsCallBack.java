@@ -17,7 +17,7 @@ import cn.soft_x.citymine.application.CityMineApplication;
 public abstract class MyXUtilsCallBack implements Callback.CommonCallback<String> {
     public String resCode = "";
     public String resInfo = "";
-    public String jsonResult = "";
+    private String jsonResult = "";
     public static final String TAG = MyXUtilsCallBack.class.getName();
     private Context context = CityMineApplication.getAppContext();
     public boolean isShowToast;

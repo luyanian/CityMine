@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.geocode.GeoCodeOption;
 import com.baidu.mapapi.search.geocode.GeoCodeResult;
@@ -34,7 +35,9 @@ import com.maverick.utils.FormatUtils;
 import com.maverick.utils.ToastUtil;
 import com.orhanobut.logger.Logger;
 
+import org.xutils.common.util.KeyValue;
 import org.xutils.http.RequestParams;
+import org.xutils.http.body.MultipartBody;
 import org.xutils.x;
 
 import java.io.File;
@@ -268,7 +271,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
         x.http().post(params, new MyXUtilsCallBack() {
             @Override
             public void success(String result) {
-                if (resCode.equals("0")) {
+                if (isSuccess()) {
                     ToastUtil.showToast(RegisterActivity.this, "信息已经提交，请等待审核通过！");
                 }
             }
@@ -347,7 +350,7 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
                 File file = new File(path.get(0));
                 Bitmap bitmap = Bimp.getimage(path.get(0));
                 acAuthLeftIv.setImageBitmap(bitmap);
-                leftPic = uploadFile(file);
+                leftPic = uploadFile(file,"leftPic");
             }
         } else if (requestCode == REQUEST_IMAGE_RIGHT) {
             if (resultCode == RESULT_OK) {
@@ -355,21 +358,30 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
                 File file = new File(path.get(0));
                 Bitmap bitmap = Bimp.getimage(path.get(0));
                 acAuthRightIv.setImageBitmap(bitmap);
-                rightPic = uploadFile(file);
+                rightPic = uploadFile(file,"rightPic");
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private String uploadFile(File file) {
+    private String uploadFile(File file, final String flag) {
+        showProgressDialog("正在上传图片，请稍候...");
         RequestParams params = new RequestParams(HttpUrl.UploadFile);
-        params.
-
+        List<KeyValue> list = new ArrayList<>();
+        list.add(new KeyValue("image",file));
+        MultipartBody multipartBody = new MultipartBody(list,"UTF-8");
+        params.setRequestBody(multipartBody);
         x.http().post(params, new MyXUtilsCallBack() {
             @Override
             public void success(String result) {
-                if (resCode.equals("0")) {
-                    ToastUtil.showToast(RegisterActivity.this, "信息已经提交，请等待审核通过！");
+                if(isSuccess()){
+                    JSONObject jsonObject = JSON.parseObject(result);
+                    if(leftPic.equals(flag)) {
+                        leftPic = jsonObject.getString("path");
+                    }
+                    if(rightPic.equals(flag)){
+                        rightPic = jsonObject.getString("path");
+                    }
                 }
             }
 
