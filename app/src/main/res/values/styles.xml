@@ -8,8 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MyAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-    </style>
+    <style name="MyAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar"></style>
 
     <style name="TranslucentTheme" parent="AppTheme"></style>
 
@@ -71,4 +70,8 @@
         <item name="android:hint">@string/tag_hint</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="TranslucentTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="TranslucentTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

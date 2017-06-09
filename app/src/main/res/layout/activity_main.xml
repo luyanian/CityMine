@@ -23,8 +23,7 @@
         android:id="@+id/activity_main_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        />
+        android:layout_gravity="bottom" />
 
     <!--<LinearLayout-->
         <!--android:layout_width="match_parent"-->

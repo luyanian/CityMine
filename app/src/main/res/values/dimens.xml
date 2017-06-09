@@ -43,5 +43,6 @@
     <dimen name="dpi_200">200dp</dimen>
     <dimen name="dpi_210">210dp</dimen>
     <dimen name="dpi_220">220dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

@@ -61,8 +61,6 @@ import me.nereo.multi_image_selector.MultiImageSelectorActivity;
  * 注册
  */
 public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResultListener, AdapterView.OnItemSelectedListener {
-
-
     @BindView(R.id.register_ed_name)
     EditText registerEdName;
     @BindView(R.id.register_ed_phone)
@@ -208,7 +206,6 @@ public class RegisterActivity extends BaseActivity implements OnGetGeoCoderResul
         } else {
             takePhoto(requestCode);
         }
-
     }
 
     private void takePhoto(int requestCode) {
